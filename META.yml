@@ -1,0 +1,42 @@
+--- 
+abstract: enterprise-class monitoring solutions
+author: 
+  - Tokuhiro Matsuno <tokuhirom AAJKLFJEF GMAIL COM>
+build_requires: 
+  Test::More: 0
+  YAML: 0
+distribution_type: module
+generated_by: Module::Install version 0.680
+license: perl
+meta-spec: 
+  url: http://module-build.sourceforge.net/META-spec-v1.3.html
+  version: 1.3
+name: App-MadEye
+no_index: 
+  directory: 
+    - inc
+    - t
+recommends: 
+  Cache::FileCache: 0
+  DBI: 0
+  Gearman::Client: 0
+  Gearman::Worker: 0
+  MogileFS::Admin: 0
+  Net::DNS: 0
+  Net::Ping: 0
+  Net::SMTP: 0
+  Net::SMTP::TLS: 0
+  Storable: 0
+requires: 
+  Class::Component: 0.10
+  IO::Select: 0
+  IO::Socket::INET: 0
+  IO::Socket::SSL: 0
+  IPC::Open3: 0
+  LWP::UserAgent: 0
+  Net::SSH: 0
+  Params::Validate: 0
+  Socket: 0
+  YAML: 0
+  perl: 5.8.0
+version: 0.01
