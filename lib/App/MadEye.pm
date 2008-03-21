@@ -2,7 +2,7 @@ package App::MadEye;
 use strict;
 use warnings;
 use 5.00800;
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 use Class::Component;
 use Params::Validate;
 use UNIVERSAL::require;
@@ -123,7 +123,7 @@ sub log {
     die "missing level" unless $level;
     die "missing msg" unless $msg;
 
-    $self->{logger}->log( level => $level, message => "[$level]$msg\n" );
+    $self->{logger}->log( level => $level, message => "[$level] $msg\n" );
 }
 
 1;
