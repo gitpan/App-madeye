@@ -33,10 +33,14 @@ requires:
   IO::Socket::INET: 0
   IO::Socket::SSL: 0
   IPC::Open3: 0
+  Kwalify: 0
   LWP::UserAgent: 0
+  List::Util: 0
+  Log::Dispatch: 0
   Net::SSH: 0
   Params::Validate: 0
+  Pod::POM: 0
   Socket: 0
   YAML: 0
   perl: 5.8.0
-version: 0.02
+version: 0.03

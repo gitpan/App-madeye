@@ -53,6 +53,8 @@ sub is_dead {
 1;
 __END__
 
+=for stopwords DJabberd
+
 =head1 NAME
 
 App::MadEye::Plugin::Agent::DJabberd - monitoring DJabberd
@@ -64,6 +66,25 @@ App::MadEye::Plugin::Agent::DJabberd - monitoring DJabberd
         admin_port: 1000
         open_socket_timeout: 10
         select_timeout: 3
+
+=head1 SCHEMA
+
+    type: map
+    mapping:
+        target:
+            type: seq
+            required: yes
+            sequence:
+                - type: str
+        admin_port:
+            required: yes
+            type: int
+        open_socket_timeout:
+            required: no
+            type: int
+        select_timeout:
+            required: no
+            type: int
 
 =head1 SEE ALSO
 

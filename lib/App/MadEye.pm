@@ -2,11 +2,27 @@ package App::MadEye;
 use strict;
 use warnings;
 use 5.00800;
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 use Class::Component;
 use Params::Validate;
 use UNIVERSAL::require;
+use Log::Dispatch;
 __PACKAGE__->load_components(qw/Plaggerize Autocall::InjectMethod/);
+
+my $context;
+sub context { $context }
+
+sub new {
+    my $class = shift;
+    my $self = $class->SUPER::new(@_);
+
+    $self->{results} = {};
+    $context = $self;
+
+    $self->_setup_logger;
+
+    $self;
+}
 
 sub run {
     my $self = shift;
@@ -14,7 +30,7 @@ sub run {
 
     unless (defined $self->class_component_methods->{'run_job'}) {
         $self->log(debug => 'use Worker::Simple');
-        $self->load_plugins(qw/Worker::Simple/);
+        $self->load_plugins(qw/Worker::Simple/ => {});
     }
 
     $self->run_hook('check');
@@ -25,7 +41,9 @@ sub run {
 
     $self->run_hook('after_run_jobs');
 
-    $self->run_hook('notify' => $self->{results});
+    if (%{$self->{results}}) {
+        $self->run_hook('notify' => $self->{results});
+    }
 
     $self->log(debug => 'finished');
 }
@@ -66,6 +84,7 @@ sub _should_add_result {
                 $self,
                 +{
                     target => $args->{target},
+                    plugin => $args->{plugin},
                 }
             );
             return 0 if $ret;
@@ -85,6 +104,26 @@ sub _load_rule {
     }
     $class->use or die $@;
     return $class->new($rule->{config});
+}
+
+sub _setup_logger {
+    my $self = shift;
+
+    my $logger = Log::Dispatch->new;
+    for my $conf (@{ $self->conf->{global}->{logger} || [] }) {
+        my $class = "Log::Dispatch::$conf->{class}";
+        $class->use or die $@;
+        $logger->add( $class->new( %{ $conf->{config} } ) );
+    }
+    $self->{logger} = $logger;
+}
+
+sub log {
+    my ($self, $level, $msg) = @_;
+    die "missing level" unless $level;
+    die "missing msg" unless $msg;
+
+    $self->{logger}->log( level => $level, message => "[$level]$msg\n" );
 }
 
 1;

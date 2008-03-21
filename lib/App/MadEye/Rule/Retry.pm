@@ -13,6 +13,8 @@ sub dispatch {
 
     my $key = YAML::Dump($args->{target});
 
+    $context->log(info => "Retry: $args->{target}, $args->{plugin}");
+
     my $cache = Cache::FileCache->new( { cache_root => $cache_root, } );
     my $retry = $cache->get($key) ? 0 : 1;
     $cache->set($key => "Boofy", $expire_time);
@@ -21,5 +23,28 @@ sub dispatch {
 }
 
 1;
+
 # HTTPD とかは頻繁に再起動するので、一回ぐらい落ちてても無視してほしい。
+
+__END__
+
+=head1 NAME
+
+App::MadEye::Rule::Retry - please retry...
+
+=head1 SCHEMA
+
+    type: map
+    mapping:
+        expire_time:
+            type: int
+            required: yes
+        cache_root:
+            type: str
+            required: yes
+
+=head1 SEE ALSO
+
+L<App::MadEye>, L<Cache::FileCache>
+
 

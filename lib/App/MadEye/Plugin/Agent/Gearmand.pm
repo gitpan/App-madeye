@@ -60,3 +60,38 @@ sub is_dead {
 }
 
 1;
+__END__
+
+=for stopwords gearmand
+
+=head1 NAME
+
+App::MadEye::Plugin::Agent::Gearmand - monitoring gearmand
+
+=head1 SCHEMA
+
+    type: map
+    mapping:
+        target:
+            type: seq
+            required: yes
+            sequence:
+                - type: str
+        port:
+            required: yes
+            type: int
+        connect_timeout:
+            required: yes
+            type: int
+        select_timeout:
+            required: yes
+            type: int
+
+=head1 AUTHORS
+
+Tokuhiro Matsuno
+
+=head1 SEE ALSO
+
+L<gearmand>, L<App::MadEye>
+
