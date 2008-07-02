@@ -2,7 +2,7 @@ package App::MadEye;
 use strict;
 use warnings;
 use 5.00800;
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 use Class::Component;
 use Params::Validate;
 use UNIVERSAL::require;
@@ -30,7 +30,12 @@ sub run {
 
     unless (defined $self->class_component_methods->{'run_job'}) {
         $self->log(debug => 'use Worker::Simple');
-        $self->load_plugins(qw/Worker::Simple/ => {});
+        $self->load_plugins(
+            {
+                module => 'Worker::Simple',
+                config => { config => { task_timeout => 10 } }
+            }
+        );
     }
 
     $self->run_hook('check');
@@ -42,7 +47,12 @@ sub run {
     $self->run_hook('after_run_jobs');
 
     if (%{$self->{results}}) {
-        $self->run_hook('notify' => $self->{results});
+        for my $obj ( @{ $self->class_component_hooks->{notify} } ) {
+            my ( $plugin, $method ) = ( $obj->{plugin}, $obj->{method} );
+            if ($self->_should_run( plugin => $plugin )) {
+                $plugin->$method($self->{results});
+            }
+        }
     }
 
     $self->log(debug => 'finished');
@@ -72,7 +82,7 @@ sub _should_add_result {
     validate(
         @_ => +{
             plugin => 1,
-            target => 1,
+            target => 0,
         }
     );
     my $args = {@_};
@@ -83,8 +93,8 @@ sub _should_add_result {
             my $ret = $rule->dispatch(
                 $self,
                 +{
-                    target => $args->{target},
                     plugin => $args->{plugin},
+                    ($args->{target} ? ( target => $args->{target}) : () ),
                 }
             );
             return 0 if $ret;
@@ -92,6 +102,7 @@ sub _should_add_result {
     }
     return 1;
 }
+*_should_run = *_should_add_result;
 
 sub _load_rule {
     my ($self, $rule) = @_;

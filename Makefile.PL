@@ -2,7 +2,7 @@ use inc::Module::Install;
 name 'App-MadEye';
 all_from 'lib/App/MadEye.pm';
 
-requires 'Class::Component' => '0.10';
+requires 'Class::Component' => '0.17';
 requires 'LWP::UserAgent';
 requires 'Params::Validate';
 requires 'YAML';
@@ -49,6 +49,7 @@ features(
     ],
 );
 
+tests('t/*.t t/*/*.t t/*/*/*.t t/*/*/*/*.t');
 build_requires 'Test::More';
 build_requires 'YAML';
 use_test_base;
