@@ -2,7 +2,7 @@ package App::MadEye;
 use strict;
 use warnings;
 use 5.00800;
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 use Class::Component;
 use Params::Validate;
 use UNIVERSAL::require;
@@ -50,7 +50,7 @@ sub run {
         for my $obj ( @{ $self->class_component_hooks->{notify} } ) {
             my ( $plugin, $method ) = ( $obj->{plugin}, $obj->{method} );
             if ($self->_should_run( plugin => $plugin )) {
-                $plugin->$method($self->{results});
+                $plugin->$method($self, $self->{results});
             }
         }
     }
