@@ -1,22 +1,24 @@
---- 
-abstract: enterprise-class monitoring solutions
-author: 
-  - Tokuhiro Matsuno <tokuhirom AAJKLFJEF GMAIL COM>
-build_requires: 
-  Test::More: 0
-  YAML: 0
+---
+abstract: 'enterprise-class monitoring solutions'
+author:
+  - 'Tokuhiro Matsuno <tokuhirom AAJKLFJEF GMAIL COM>'
+build_requires:
+  ExtUtils::MakeMaker: 6.42
+configure_requires:
+  ExtUtils::MakeMaker: 6.42
 distribution_type: module
-generated_by: Module::Install version 0.68
+generated_by: 'Module::Install version 0.97'
 license: perl
-meta-spec: 
-  url: http://module-build.sourceforge.net/META-spec-v1.3.html
-  version: 1.3
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
 name: App-MadEye
-no_index: 
-  directory: 
+no_index:
+  directory:
     - inc
     - t
-recommends: 
+    - xt
+recommends:
   Cache::FileCache: 0
   DBI: 0
   Gearman::Client: 0
@@ -27,8 +29,9 @@ recommends:
   Net::SMTP: 0
   Net::SMTP::TLS: 0
   Storable: 0
-requires: 
-  Class::Component: 0.10
+requires:
+  Class::Component: 0.17
+  Filter::Util::Call: 0
   IO::Select: 0
   IO::Socket::INET: 0
   IO::Socket::SSL: 0
@@ -39,9 +42,11 @@ requires:
   Log::Dispatch: 0
   Net::SNMP: 0
   Net::SSH: 0
-  Params::Validate: 0
+  Params::Validate: 0.91
   Pod::POM: 0
   Socket: 0
   YAML: 0
   perl: 5.8.0
-version: 0.04
+resources:
+  license: http://dev.perl.org/licenses/
+version: 0.07
