@@ -3,13 +3,14 @@ abstract: 'enterprise-class monitoring solutions'
 author:
   - 'Tokuhiro Matsuno <tokuhirom AAJKLFJEF GMAIL COM>'
 build_requires:
-  ExtUtils::MakeMaker: 6.42
+  ExtUtils::MakeMaker: 6.59
   Test::More: 0
   YAML: 0
 configure_requires:
-  ExtUtils::MakeMaker: 6.42
-distribution_type: module
-generated_by: 'Module::Install version 1.01'
+  CPAN::Meta: 0
+  ExtUtils::MakeMaker: 6.59
+dynamic_config: 0
+generated_by: 'Module::Install version 1.06, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -33,12 +34,12 @@ recommends:
   Storable: 0
 requires:
   Class::Component: 0.17
+  Furl: 0
   IO::Select: 0
   IO::Socket::INET: 0
   IO::Socket::SSL: 0
   IPC::Open3: 0
   Kwalify: 0
-  LWP::UserAgent: 0
   List::Util: 0
   Log::Dispatch: 0
   Net::SNMP: 0
@@ -47,7 +48,7 @@ requires:
   Pod::POM: 0
   Socket: 0
   YAML: 0
-  perl: 5.8.0
+  perl: v5.8.0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.08
+version: 0.09
