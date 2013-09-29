@@ -9,7 +9,7 @@ configure_requires:
   CPAN::Meta::Prereqs: 0
   Module::Build: 0.38
 dynamic_config: 0
-generated_by: 'Minilla/v0.5.6, CPAN::Meta::Converter version 2.131560'
+generated_by: 'Minilla/v0.6.7, CPAN::Meta::Converter version 2.132510'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -27,7 +27,7 @@ no_index:
 provides:
   App::MadEye:
     file: lib/App/MadEye.pm
-    version: 0.12
+    version: 0.13
   App::MadEye::Plugin::Agent::Base:
     file: lib/App/MadEye/Plugin/Agent/Base.pm
   App::MadEye::Plugin::Agent::DBI:
@@ -96,8 +96,6 @@ provides:
     file: lib/App/MadEye/Plugin/Notify/IMKayac.pm
   App::MadEye::Plugin::Notify::Ikachan:
     file: lib/App/MadEye/Plugin/Notify/Ikachan.pm
-  App::MadEye::Plugin::Notify::Nakanobu:
-    file: lib/App/MadEye/Plugin/Notify/Nakanobu.pm
   App::MadEye::Plugin::Notify::XMPP:
     file: lib/App/MadEye/Plugin/Notify/XMPP.pm
   App::MadEye::Plugin::Worker::Gearman:
@@ -135,8 +133,6 @@ requires:
   IO::Socket::INET: 0
   IO::Socket::SSL: 0
   IPC::Open3: 0
-  JSON::RPC::Common::Marshal::HTTP: 0
-  JSON::RPC::Common::Procedure::Call: 0
   Kwalify: 0
   LWP::UserAgent: 0
   List::Util: 0
@@ -166,7 +162,7 @@ resources:
   bugtracker: https://github.com/tokuhirom/madeye/issues
   homepage: https://github.com/tokuhirom/madeye
   repository: git://github.com/tokuhirom/madeye.git
-version: 0.12
+version: 0.13
 x_contributors:
   - 'otsune <otsune@d0d07461-0603-4401-acd4-de1884942a52>'
   - 'tokuhirom <tokuhirom@d0d07461-0603-4401-acd4-de1884942a52>'

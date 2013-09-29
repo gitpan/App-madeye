@@ -40,7 +40,6 @@ lib/App/MadEye/Plugin/Notify/Email.pm
 lib/App/MadEye/Plugin/Notify/IKC.pm
 lib/App/MadEye/Plugin/Notify/IMKayac.pm
 lib/App/MadEye/Plugin/Notify/Ikachan.pm
-lib/App/MadEye/Plugin/Notify/Nakanobu.pm
 lib/App/MadEye/Plugin/Notify/XMPP.pm
 lib/App/MadEye/Plugin/Worker/Gearman.pm
 lib/App/MadEye/Plugin/Worker/Simple.pm
